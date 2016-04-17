@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">NotificationCompat</string>
+    <string name="notification_small">Small Icon</string>
+    <string name="notification_large">Large Icon</string>
+    <string name="notification_actions">with action</string>
+    <string name="notification_sound">with sound</string>
+    <string name="notification_big_picture">Style BigPictureStyle</string>
+    <string name="notification_big_text">Style BigTextStyle</string>
+    <string name="notification_inbox">Style InboxStyle</string>
+    <string name="notification_media">Style MediaStyle</string>
+
+
+
+
+
+</resources>
