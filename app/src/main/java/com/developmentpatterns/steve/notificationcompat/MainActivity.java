@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         NotificationCompat.Builder builder = new NotificationCompat.Builder(activity);
 
         builder.setSmallIcon(R.drawable.ic_whatshot_black_24dp);
-        builder.setContentTitle("Manuel");
+        builder.setContentTitle("Zayn");
         String text = "Bro, today state of trance. Goooooo!";
         builder.setContentText(text);
 
@@ -129,6 +129,86 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Notification notification = builder.build();
         NotificationManagerCompat.from(activity).notify(NOTIFICATION_ID + 3, notification);
+
+    }
+
+    private void sendNotificationBigPictureStyle(Activity activity){
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(activity);
+        builder.setSmallIcon(R.drawable.ic_whatshot_black_24dp);
+
+        Bitmap profilePicture = BitmapFactory.decodeResource(
+                activity.getResources(),
+                R.drawable.profile_luz
+        );
+
+        Bitmap bigPicture = BitmapFactory.decodeResource(
+                activity.getResources(),
+                R.drawable.big_picture
+        );
+
+        NotificationCompat.BigPictureStyle style = new NotificationCompat.BigPictureStyle();
+        style.bigPicture(bigPicture);
+        style.setBigContentTitle("New picture from Luz");
+        style.setSummaryText("Science is awesome, look at.");
+        style.bigLargeIcon(profilePicture);
+        builder.setStyle(style);
+
+        Notification notification = builder.build();
+        NotificationManagerCompat.from(activity).notify(NOTIFICATION_ID + 4, notification);
+
+    }
+
+    private void sendNotificationInboxStyle(Activity activity){
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(activity);
+
+        builder.setSmallIcon(R.drawable.ic_whatshot_black_24dp);
+
+        Bitmap profilePicture = BitmapFactory.decodeResource(
+                activity.getResources(),
+                R.drawable.profile_manual
+        );
+        builder.setLargeIcon(profilePicture);
+
+        NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
+        inboxStyle.setBigContentTitle("Manuel");
+        String messages = "Bro!, today Armin in Mamacona\n" +
+                "State of trance, fucking holy madness\n" +
+                "Goooooooooooo!";
+
+
+        if (!messages.isEmpty()) {
+            String[] lines = messages.split("\\n");
+            for (int i= 0; i < lines.length ; i++) {
+                inboxStyle.addLine(lines[i]);
+            }
+            inboxStyle.setSummaryText(lines.length + " new messages");
+        }
+        builder.setStyle(inboxStyle);
+        Notification notification = builder.build();
+        NotificationManagerCompat.from(activity).notify(NOTIFICATION_ID + 5, notification);
+    }
+
+    public void sendNotificationBigTextStyle(Activity activity){
+
+        Bitmap profilePicture = BitmapFactory.decodeResource(
+                activity.getResources(),
+                R.drawable.profile_carl_sagan
+        );
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(activity);
+        builder.setSmallIcon(R.drawable.ic_whatshot_black_24dp);
+        builder.setLargeIcon(profilePicture);
+
+        NotificationCompat.BigTextStyle bigTextStyle= new NotificationCompat.BigTextStyle();
+        bigTextStyle.setBigContentTitle("Carl Sagan");
+        bigTextStyle.setSummaryText("Quote of the Day");
+        bigTextStyle.bigText("Science is much more than a body of knowledge." +
+                " It is a way of thinking. This is central to its success." +
+                " Science invites us to let the facts in, even when they don’t conform to our preconceptions.");
+        builder.setStyle(bigTextStyle);
+
+        Notification notification = builder.build();
+        NotificationManagerCompat.from(activity).notify(NOTIFICATION_ID + 6, notification);
 
     }
 
@@ -148,10 +228,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 sendNotificationWithSound(getActivity());
                 break;
             case R.id.buttonBigTextStyle:
+                sendNotificationBigTextStyle(getActivity());
                 break;
             case R.id.buttonBigPictureStyle:
+                sendNotificationBigPictureStyle(getActivity());
                 break;
             case R.id.buttonInboxStyle:
+                sendNotificationInboxStyle(getActivity());
                 break;
             case R.id.buttonMediaStyle:
                 break;
